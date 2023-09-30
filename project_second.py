@@ -1,7 +1,6 @@
 import os
 import pandas as pd
 import torchvision.transforms as transforms
-import torchvision
 from torch.utils import data
 import torch.nn as nn
 import torch
@@ -150,18 +149,6 @@ def train_model(model):
 ############  MAIN  ############
 input_shape = (3, 160, 320)  # Assuming RGB images of size 224x224
 keep_prob = 0.5  # Dropout keep probability
-# model = MyModel(input_shape, keep_prob)
-# train_model(model)
+model = MyModel(input_shape, keep_prob)
+train_model(model)
 
-
-def imshow(imgs):
-    imgs = imgs / 2 + 0.5   # unnormalize
-    npimgs = imgs.numpy()
-    plt.imshow(np.transpose(npimgs, (1, 2, 0)))
-    plt.show()
-
-# one batch of random training images
-for i , (ig , l) in enumerate(testing_data_loader):
-    if i == 1:
-        img_grid = torchvision.utils.make_grid(ig[0:25], nrow=5)
-        imshow(img_grid)
